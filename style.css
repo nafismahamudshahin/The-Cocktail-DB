@@ -8,3 +8,28 @@
     justify-content: space-between;
 
 }
+.add_to_cart_item{
+
+display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+  margin-bottom: 5px;
+  border-radius: 4px;
+}
+.cart_sl {
+  width: 30px;
+  text-align: center;
+  padding-right: 5px;
+}
+.cart_name {
+  font-weight: bold;
+  flex: 1;
+}
+.cart_images{
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1px solid #000;
+}

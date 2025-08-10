@@ -6,9 +6,9 @@ const loadData = (search)=>{
     })
 }
 
-const btn = document.getElementById('search_btn');
-btn.addEventListener('click',(e)=>{
+document.getElementById('search_btn').addEventListener('click',(e)=>{
     const search = document.getElementById('search_box').value;
+    document.getElementById('drinks_container').innerText="";
     loadData(search);
     // clear search box:
     document.getElementById('search_box').value="";
@@ -16,8 +16,13 @@ btn.addEventListener('click',(e)=>{
 loadData('a');
 
 const displayData = (drinks)=>{
-    console.log(drinks[0]);
     const drinksContainer = document.getElementById('drinks_container');
+    if(drinks == "no data found" || drinks == null){
+        document.getElementById('data_not_found').innerHTML=`
+            <h2 class="text-center">Your Searched Drink is Not Found.</h2>
+        `;
+        return
+    }
     drinks.forEach(drink=>{
         const div = document.createElement('div');
         div.classList.add('col')
@@ -31,11 +36,39 @@ const displayData = (drinks)=>{
                     <p class="card-text">${drink.strInstructions.slice(0,60)}...</p>
                 </div>
                     <div class="card-footer cart_bottom">
-                        <a href="#" class="btn btn-primary">Add to Cart</a>
-                        <a href="#" class="btn btn-success">Details</a>
+                        <button class="btn btn-primary add_to_cart_btn" onclick="addToCart('${drink.strDrinkThumb}','${drink.strGlass}',this)">Add to Cart</button>
+                        <button class="btn btn-success" onclick="">Details</button>
                     </div>
             </div>
         `;
         drinksContainer.appendChild(div)
+
     })
 }
+
+
+let cnt = 0;
+const addToCart = (drinkImg , name,this_btn)=>{
+    const addToCartContainer = document.getElementById('cart_items');
+    const cartCountContainer = document.getElementById('cart_count');
+    cnt++;
+    if(cnt>7){
+        alert("You have reached the max limit.")
+        return
+    }
+    const div = document.createElement('div');
+    div.classList.add('add_to_cart_item')
+    div.innerHTML=`
+        <b class="cart_sl">${cnt}</b>
+        <img class="cart_images mx-4" src="${drinkImg}" />
+        <b class="cart_name">${name}</b>
+    `;
+    addToCartContainer.appendChild(div);
+    cartCountContainer.innerText=cnt;
+    if(this_btn){
+        this_btn.innerText ="Selected";
+        this_btn.disabled = true;
+    }
+
+}
+
