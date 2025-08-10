@@ -33,11 +33,11 @@ const displayData = (drinks)=>{
                     <h5 class="card-title">Name: ${drink.strGlass}</h5>
                     <h6 class="card-title">Category: ${drink.strCategory}</h6>
 
-                    <p class="card-text">${drink.strInstructions.slice(0,60)}...</p>
+                    <p class="card-text">${drink.strInstructions.slice(0,15)}...</p>
                 </div>
                     <div class="card-footer cart_bottom">
                         <button class="btn btn-primary add_to_cart_btn" onclick="addToCart('${drink.strDrinkThumb}','${drink.strGlass}',this)">Add to Cart</button>
-                        <button class="btn btn-success" onclick="">Details</button>
+                        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#drinkDetailsModal" onclick="leadMoreDetailsById(${drink.idDrink})">Details</button>
                     </div>
             </div>
         `;
@@ -66,9 +66,24 @@ const addToCart = (drinkImg , name,this_btn)=>{
     addToCartContainer.appendChild(div);
     cartCountContainer.innerText=cnt;
     if(this_btn){
-        this_btn.innerText ="Selected";
+        this_btn.innerText ="Already Selected";
         this_btn.disabled = true;
     }
 
 }
 
+const leadMoreDetailsById =(id)=>{
+    fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`)
+    .then(res=>res.json())
+    .then(data=>{
+       displayMoreDetails(data.drinks[0]);
+    })
+}
+const displayMoreDetails =(driks)=>{
+    console.log(driks);
+    document.getElementById('modal_title').innerText= driks.strGlass;
+    document.getElementById('modal_img').src = driks.strDrinkThumb;
+    document.getElementById('category').innerText = driks.strCategory;
+    document.getElementById('alcoholic').innerText = driks.strAlcoholic;
+    document.getElementById('info').innerText = driks.strInstructions;
+}

@@ -21,7 +21,7 @@
         <section>
             <div id="data_not_found"></div>
             <div class="row">
-                <div class="col-10 row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="drinks_container">
+                <div class="col-10 row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 d-flex justify-content-center m-auto" id="drinks_container">
                     
                 </div>
                 <div class="col mt-5">
@@ -38,6 +38,28 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="drinkDetailsModal" tabindex="-1" aria-labelledby="modal_title" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="modal_title">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img class="img-fluid" id="modal_img" src="" alt="">
+
+                    <h5>Details</h5>
+                    <p>Category:  <b id="category"></b></p>
+                    <p>Alcoholic:  <b id="alcoholic"></b></p>
+                    <p id="info"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+                </div>
+            </div>
             </div>
         </section>
     </main>

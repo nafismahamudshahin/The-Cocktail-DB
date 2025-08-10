@@ -9,13 +9,12 @@
 
 }
 .add_to_cart_item{
-
-display: flex;
-  align-items: center;
-  border: 1px solid #ccc;
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
-  margin-bottom: 5px;
-  border-radius: 4px;
+    display: flex;
+    align-items: center;
+    border: 1px solid gray;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    margin-bottom: 5px;
+    border-radius: 4px;
 }
 .cart_sl {
   width: 30px;
